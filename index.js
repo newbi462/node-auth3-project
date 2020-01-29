@@ -3,7 +3,7 @@ const express = require("express");
 //SESSIONB DEPENDANCIES
 
 // Import Data
-
+const db = require('./data/db.js');
 
 //START WITH EXPRESS
 const server = express();

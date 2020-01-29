@@ -12,27 +12,18 @@ const server = express();
 
 
 //CUSTOME MILLEWHARE/HANDLE FUNCTIONS OR INPORTS OF
-function logger(request, responce, next) {
-  const { method, originalUrl } = request;
-  console.log(`${method} to ${originalUrl} at ${Date(Date.now())}`);
-
-  next();
-}
+const myMidWare = require('./midware/mymid.js');
 
 //MIDDLE WARE
 server.use(express.json());
-server.use(logger);
+//server.use(logger);
 
 //ROUTES
-//const projectRouter = require('./routes/projectRouter.js');
+const userRouter = require('./routes/userRouter.js');
 
 //ENDPOINTS
-server.get('/', logger, (req, res) => {
-  res.send(`<h2>GLOBAL SERVER UP ENDPOINT</h2>`);
-});
-
-//server.use('/api/projectURL', projectRouter);
-
+server.get('/', myMidWare.logger, (req, res) => { res.send(`<h2>GLOBAL SERVER UP ENDPOINT</h2>`); });
+server.use('/api', userRouter);
 
 //LISTEN SERVER
 const port = 8000;

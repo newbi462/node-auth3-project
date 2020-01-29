@@ -73,11 +73,9 @@ function isLoggedIn(request, responce, next) {
 
   if(token) {
     jwt.verify(token, myMidWare.jwtSecret, (error, decodedToken) => {
-      if(error) {
-        // the token is not valid
+      if(error) { // the token is not valid
         responce.status(401).json({ you: "can't touch this!"})
-      } else {
-        //request.user = { house: decodedToken.house };
+      } else { //request.user = { house: decodedToken.house };
         next();
       }
     })

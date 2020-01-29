@@ -3,6 +3,7 @@ const db = require('../data/db.js');
 module.exports = {
   findUserById,
   addUser,
+  findByProp,
 }
 
 function findUserById(id) {
@@ -18,4 +19,8 @@ function addUser(userObj) {
       const [id] = ids;
       return findUserById(id);
     });
+}
+
+function findByProp(filterBy) {
+    return db('users').where(filterBy);
 }

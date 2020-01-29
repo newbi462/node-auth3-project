@@ -46,6 +46,15 @@ router.post("/login", (request, responce) => {
     });
 });
 
+router.get('/users', isLoggedIn, (request, responce) => {
+  UserModel.listUsers()
+    .then(users => { responce.json(users); })
+    .catch( error => {
+      console.log(error);
+      responce.status(500).json( {error: "Get USERS Failed."} )
+    })
+});
+
 
 function signToken(user) {
   const payload = {
@@ -57,6 +66,24 @@ function signToken(user) {
   };
 
   return jwt.sign(payload, myMidWare.jwtSecret, options);
+}
+
+function isLoggedIn(request, responce, next) {
+  const token = request.headers.authorization;
+
+  if(token) {
+    jwt.verify(token, myMidWare.jwtSecret, (error, decodedToken) => {
+      if(error) {
+        // the token is not valid
+        responce.status(401).json({ you: "can't touch this!"})
+      } else {
+        //request.user = { house: decodedToken.house };
+        next();
+      }
+    })
+  } else {
+    responce.status(401).json({ you: 'shall not pass!'})
+  }
 }
 
 module.exports = router;

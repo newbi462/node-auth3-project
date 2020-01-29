@@ -16,7 +16,7 @@ const myMidWare = require('./midware/mymid.js');
 
 //MIDDLE WARE
 server.use(express.json());
-//server.use(logger);
+server.use(myMidWare.logger);
 
 //ROUTES
 const userRouter = require('./routes/userRouter.js');

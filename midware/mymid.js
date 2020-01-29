@@ -3,7 +3,7 @@ const db = require('../data/db.js');
 module.exports = {
   logger,
   jwtSecret: process.env.JWT_SECRET || 'is it secret, is it safe?',
-  
+
 }
 
 function logger(request, responce, next) {

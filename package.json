@@ -1,0 +1,21 @@
+{
+    "name": "node-auth3-project",
+    "version": "1.0.0",
+    "description": "U4 W2 D3",
+    "main": "index.js",
+    "scripts": {
+        "server": "nodemon index.js"
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "express": "^4.17.1",
+        "helmet": "^3.21.2",
+        "jsonwebtoken": "^8.5.1",
+        "knex": "^0.20.8",
+        "knex-cleaner": "^1.3.0",
+        "sqlite3": "^4.1.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.2"
+    }
+}
